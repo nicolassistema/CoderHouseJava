@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="NumeroFlotanteLetticugna:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/NumeroFlotanteLetticugna_jar</output-path>
+    <root id="archive" name="NumeroFlotanteLetticugna.jar">
+      <element id="module-output" name="NumeroFlotanteLetticugna" />
+    </root>
+  </artifact>
+</component>

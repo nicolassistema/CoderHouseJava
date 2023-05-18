@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="Clase1-Variables:jar2">
+    <output-path>$PROJECT_DIR$/out/artifacts/Clase1_Variables_jar2</output-path>
+    <root id="archive" name="Clase1-Variables.jar">
+      <element id="module-output" name="Clase1-Variables" />
+    </root>
+  </artifact>
+</component>
