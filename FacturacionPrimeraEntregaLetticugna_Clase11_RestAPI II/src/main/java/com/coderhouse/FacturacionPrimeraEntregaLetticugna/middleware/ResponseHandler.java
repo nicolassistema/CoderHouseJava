@@ -6,13 +6,13 @@ import org.springframework.http.ResponseEntity;
 import java.util.HashMap;
 import java.util.Map;
 
-public class ResponseHandler {//es para normalizar todas las respuestas de mi aplicacion
+public class ResponseHandler {
     public static ResponseEntity<Object> generateResponse(
             String message,
             HttpStatus status,
             Object responseObj
     ) {
-        Map<String, Object> map = new HashMap<>();//esto devuelve un formato clave varlo, es como un json
+        Map<String, Object> map = new HashMap<>();
         map.put("message", message);
         map.put("status", status.value());
         map.put("data", responseObj);

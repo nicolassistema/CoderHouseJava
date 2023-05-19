@@ -4,32 +4,32 @@ import jakarta.persistence.*;
 
 import java.util.List;
 
-//Acá vemos la MAGIA de Hibernate.
-// Estamos utilizando el ORM, para transformar las tablas en clases de Java.
 @Entity
 @Table(name = "client")
-
 public class Client {
+
     @Id
-    @GeneratedValue (strategy = GenerationType.IDENTITY)//esto genera auto incremental del id en la tabla
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
+    @Column(nullable = false)
     private String name;
+    @Column(nullable = false)
 
-    @Column(name="lastname")
-    private String lastName;
-    @Column(name="docnumber")
-    private String docNumber;
+    private String lastname;
+    @Column(nullable = false, unique = true)
 
+    private String docnumber;
 
-
-    @OneToMany(mappedBy = "client", fetch = FetchType.EAGER)//cuando se hace la conuslta trae las facturas relacionas al cliente
-
-
-
+    @OneToMany(mappedBy = "client")
     private List<Invoice> invoice;
+
+    //RESTO DE LOS MÉTODOS
+
     public List<Invoice> getInvoice() {
         return invoice;
     }
+
     public void setInvoice(List<Invoice> invoice) {
         this.invoice = invoice;
     }
@@ -50,30 +50,29 @@ public class Client {
         this.name = name;
     }
 
-    public String getLastName() {
-        return lastName;
+    public String getLastname() {
+        return lastname;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
     }
 
-    public String getDocNumber() {
-        return docNumber;
+    public String getDocnumber() {
+        return docnumber;
     }
 
-    public void setDocNumber(String docNumber) {
-        this.docNumber = docNumber;
+    public void setDocnumber(String docnumber) {
+        this.docnumber = docnumber;
     }
 
     @Override
     public String toString() {
-        return "Cliente{" +
+        return "Client{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", docNumber=" + docNumber +
+                ", lastname='" + lastname + '\'' +
+                ", docnumber='" + docnumber + '\'' +
                 '}';
     }
-
 }

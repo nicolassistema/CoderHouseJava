@@ -19,6 +19,11 @@ public class ClientService {
 
     public Client getClient(int id) throws Exception {
         Optional<Client> clienteObtenido = this.clientRepository.findById(id);
-        return clienteObtenido.get();
+        if(clienteObtenido.isEmpty()){
+            return null;
+        }else{
+            return clienteObtenido.get();
+        }
+
     }
 }
