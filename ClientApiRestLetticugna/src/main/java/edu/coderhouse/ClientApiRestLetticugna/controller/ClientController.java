@@ -1,6 +1,5 @@
 package edu.coderhouse.ClientApiRestLetticugna.controller;
 
-
 import edu.coderhouse.ClientApiRestLetticugna.middleware.ResponseHandler;
 import edu.coderhouse.ClientApiRestLetticugna.model.Client;
 import edu.coderhouse.ClientApiRestLetticugna.service.ClientService;
@@ -8,6 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.HashMap;
+import java.util.Map;
 
 @RestController
 @RequestMapping(path = "api/v1/client")
@@ -22,15 +24,17 @@ public class ClientController {
     public ResponseEntity<Object> postClient (@RequestBody Client client) {
         try {
             System.out.println(client);
-            Client clientSaved = clientService.postClient(client);
+            Map<String, String> clientMap = new HashMap<>();//declaro e inicializo un objeto del tipo HashMap
+            clientMap = clientService.postClient(client);//obtengo el objeto map
             return ResponseHandler.generateResponse(
-                    "Data retrieved successfully",
+                    "El cliente se cargo correctamente",
                     HttpStatus.OK,
-                    clientSaved
+                    clientMap
+
             );
         } catch (Exception e) {
             return ResponseHandler.generateResponse(
-                    e.getMessage(),
+                    e.getMessage() + " o  [el formato de la fecha ingresada es incorrecto. El formato debe ser yyyy-MM-dd]",
                     HttpStatus.INTERNAL_SERVER_ERROR,
                     null
             );
@@ -41,11 +45,12 @@ public class ClientController {
     public ResponseEntity<Object> getClient (@PathVariable() int id) {
         try {
             System.out.println(id);
-            Client clientFound = clientService.getClient(id);
+            Map<String, String> clientMapFound = new HashMap<>();//declaro e inicializo un objeto del tipo HashMap
+             clientMapFound = clientService.getClient(id);//obtengo el objeto map
             return ResponseHandler.generateResponse(
                     "Client get successfully",
                     HttpStatus.OK,
-                    clientFound
+                    clientMapFound
             );
         } catch (Exception e) {
             return ResponseHandler.generateResponse(

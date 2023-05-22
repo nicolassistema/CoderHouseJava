@@ -1,28 +1,25 @@
 package edu.coderhouse.ClientApiRestLetticugna.model;
 
-
 import jakarta.persistence.*;
-
-import java.util.List;
 
 @Entity
 @Table(name = "client")
 public class Client {
 
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(nullable = false)
-    private String name;
-    @Column(nullable = false)
-    private String lastname;
+    @Column(name="nombre", nullable = false)
+    private String nombre;
+    @Column(name="apellido", nullable = false)
+    private String apellido;
+    @Column(name="fecha_nacimiento", nullable = false)
+    private String fechaNacimiento;
 
-    @Column(nullable = false)
-    private int  age;
 
-    public int getId() {
+
+   public int getId() {
         return id;
     }
 
@@ -30,37 +27,39 @@ public class Client {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getNombre() {
+        return nombre;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
-    public String getLastname() {
-        return lastname;
+    public String getApellido() {
+        return apellido;
     }
 
-    public void setLastname(String lastname) {
-        this.lastname = lastname;
+    public void setApellido(String apellido) {
+        this.apellido = apellido;
     }
 
-    public int getAge() {
-        return age;
+    public String getFechaNacimiento() {
+        return fechaNacimiento;
     }
 
-    public void setAge(int age) {
-        this.age = age;
+    public void setFechaNacimiento(String fechaNacimiento) {
+        this.fechaNacimiento = fechaNacimiento;
     }
 
     @Override
     public String toString() {
         return "Client{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", lastname='" + lastname + '\'' +
-                ", age=" + age +
+                "id='" + id + '\'' +
+                "nombre='" + nombre + '\'' +
+                ", apellido='" + apellido + '\'' +
+                ", fechaNacimiento='" + fechaNacimiento + '\'' +
                 '}';
+
     }
+
 }
