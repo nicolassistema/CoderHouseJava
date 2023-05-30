@@ -78,7 +78,7 @@ public class ClientService {
             clietnMap.put("Yearbirth", dateString);
             clietnMap.put("YearOld", Integer.toString(age));
 
-            clientRepository.save(clientFound);
+            //clientRepository.save(clientFound);
 
             return clietnMap;
         }
@@ -118,6 +118,50 @@ public class ClientService {
             return clientListOfMaps;
         }
     }
+
+
+    public Map deleteClientById(int id) throws Exception {
+        Optional<Client> client = clientRepository.findById(id);//obtengo el cliente por id
+        Map<String, String> clietnMap = new LinkedHashMap<>();//genero un objeto del tipo LinkedHashMap
+        if(client.isEmpty()){// si el cliente es null devuelvo null
+            return null;
+        } else {
+            Client clientFound = client.get();//declaro e inicializo un objeto del tipo client
+            //Evaluo si el formato de la fecha es el correcto
+            String pattern = "dd-MM-yyyy";//caro un formato de fecha a un string
+            DateTimeFormatter formato = DateTimeFormatter.ofPattern(pattern);//declaro e inicializo una variable del tipo DateTimeFormatter
+            SimpleDateFormat dateFormat = new SimpleDateFormat(pattern);//declaro e inicializo una variable del tipo SimpleDateFormat
+            String dateString = dateFormat.format(clientFound.getYearbirth());//obtengo la fecha del tipo date y la convierto en fecha del tipo string con formato
+            LocalDate fecha  = LocalDate.parse(dateString, formato);//intento parsear la decha obtenida a local date, si lo parsea ok, sigue avanzando con la ejecucion de codigo, si no, sale por error en el controller
+
+
+
+            clietnMap.put("Name", clientFound.getName());//obntego el nombre del cliente para cargarlo en el map
+            clietnMap.put("LasteNAme", clientFound.getLastname());//obntego el apellido del cliente para cargarlo en el map
+            clietnMap.put("DocNumber", clientFound.getDocnumber());//obntego el apellido del cliente para cargarlo en el map
+
+            Map<String, String> map = new LinkedHashMap<>();
+            map.put("Name", clientFound.getName());
+            map.put("LastName", clientFound.getLastname());
+            map.put("DocNumber", clientFound.getDocnumber());
+            Date dateBirth = clientFound.getYearbirth();
+
+            Date fechaActual = new Date();
+            DateFormat formatter = new SimpleDateFormat("yyyyMMdd");
+            int d1 = Integer.parseInt(formatter.format(dateBirth));
+            int d2 = Integer.parseInt(formatter.format(fechaActual));
+            int age = ((d2 - d1) / 10000);
+            clietnMap.put("Yearbirth", dateString);
+            clietnMap.put("YearOld", Integer.toString(age));
+
+            clientRepository.delete(clientFound);
+
+            return clietnMap;
+        }
+    }
+
+
+
 
 }
 

@@ -24,6 +24,29 @@ public class ClientController {
     //CRUD cliente
 
     //Create
+
+    @DeleteMapping(path = "{id}")
+    public ResponseEntity<Object> deleteClient (@PathVariable() int id) {
+        try {
+            System.out.println(id);
+            Map clientFound = clientService.deleteClientById(id);
+            return ResponseHandler.generateResponse(
+                    "Client delete successfully",
+                    HttpStatus.OK,
+                    clientFound
+            );
+        } catch (Exception e) {
+            return ResponseHandler.generateResponse(
+                    e.getMessage(),
+                    HttpStatus.INTERNAL_SERVER_ERROR,
+                    null
+            );
+        }
+    }
+
+
+
+
     @PostMapping
     public ResponseEntity<Object> postClient (@RequestBody Client client) {
         try {
