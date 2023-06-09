@@ -17,23 +17,8 @@ public class ClientService {
     private ClientRepository clientRepository;
 
     public Map postClient(Client clientSaved) throws Exception {
-        //Evaluo si el formato de la fecha es el correcto
-        String pattern = "dd-MM-yyyy";//caro un formato de fecha a un string
-        DateTimeFormatter formato = DateTimeFormatter.ofPattern(pattern);//declaro e inicializo una variable del tipo DateTimeFormatter
-        SimpleDateFormat dateFormat = new SimpleDateFormat(pattern);//declaro e inicializo una variable del tipo SimpleDateFormat
-        String dateString = dateFormat.format(clientSaved.getYearbirth());//obtengo la fecha del tipo date y la convierto en fecha del tipo string con formato
-        LocalDate fecha  = LocalDate.parse(dateString, formato);//intento parsear la decha obtenida a local date, si lo parsea ok, sigue avanzando con la ejecucion de codigo, si no, sale por error en el controller
-
-        Map<String, String> map = new LinkedHashMap<>();
-        map.put("Name", clientSaved.getName());
-        map.put("LastName", clientSaved.getLastname());
-        map.put("DocNumber", clientSaved.getDocnumber());
-        Date dateBirth = clientSaved.getYearbirth();
-
-        map.put("Yearbirth", dateString);
-        map.put("Años", Integer.toString(ageResult(dateBirth)));
         clientRepository.save(clientSaved);
-        return map;
+        return getClientMap(clientSaved);
     }
 
     public Map getClientById(int id) throws Exception {
@@ -103,19 +88,7 @@ public class ClientService {
             DateTimeFormatter formato = DateTimeFormatter.ofPattern(pattern);//declaro e inicializo una variable del tipo DateTimeFormatter
             SimpleDateFormat dateFormat = new SimpleDateFormat(pattern);//declaro e inicializo una variable del tipo SimpleDateFormat
             for (Client client : clientList) {//recorro cada elemento de la lista y proceso sus datos tal cual metodo getClient pero a lo ultimo lo cargo en una lista
-
-                String dateString = dateFormat.format(client.getYearbirth());//obtengo la fecha del tipo date y la convierto en fecha del tipo string con formato
-                LocalDate fecha  = LocalDate.parse(dateString, formato);//intento parsear la decha obtenida a local date, si lo parsea ok, sigue avanzando con la ejecucion de codigo, si no, sale por error en el controller
-
-                Map<String, String> clientMap = new LinkedHashMap<>();//genero un objeto del tipo LinkedHashMap
-                clientMap.put("Name", client.getName());//obntego el nombre del cliente para cargarlo en el map
-                clientMap.put("LasteNAme", client.getLastname());//obntego el apellido del cliente para cargarlo en el map
-                clientMap.put("DocNumber", client.getDocnumber());//obntego el apellido del cliente para cargarlo en el map
-
-                Date dateBirth = client.getYearbirth();
-                clientMap.put("Yearbirth", dateString);
-                clientMap.put("YearOld", Integer.toString(ageResult(dateBirth)));
-                clientListOfMaps.add(clientMap);
+                clientListOfMaps.add(getClientMap(client));
             }
             return clientListOfMaps;
         }
@@ -127,32 +100,10 @@ public class ClientService {
         if(client.isEmpty()){// si el cliente es null devuelvo null
             return null;
         } else {
-            Client clientFound = client.get();//declaro e inicializo un objeto del tipo client
-            //Evaluo si el formato de la fecha es el correcto
-            String pattern = "dd-MM-yyyy";//caro un formato de fecha a un string
-            DateTimeFormatter formato = DateTimeFormatter.ofPattern(pattern);//declaro e inicializo una variable del tipo DateTimeFormatter
-            SimpleDateFormat dateFormat = new SimpleDateFormat(pattern);//declaro e inicializo una variable del tipo SimpleDateFormat
-            String dateString = dateFormat.format(clientFound.getYearbirth());//obtengo la fecha del tipo date y la convierto en fecha del tipo string con formato
-            LocalDate fecha  = LocalDate.parse(dateString, formato);//intento parsear la decha obtenida a local date, si lo parsea ok, sigue avanzando con la ejecucion de codigo, si no, sale por error en el controller
-
-            clietnMap.put("Name", clientFound.getName());//obntego el nombre del cliente para cargarlo en el map
-            clietnMap.put("LasteNAme", clientFound.getLastname());//obntego el apellido del cliente para cargarlo en el map
-            clietnMap.put("DocNumber", clientFound.getDocnumber());//obntego el apellido del cliente para cargarlo en el map
-
-            Map<String, String> map = new LinkedHashMap<>();
-            map.put("Name", clientFound.getName());
-            map.put("LastName", clientFound.getLastname());
-            map.put("DocNumber", clientFound.getDocnumber());
-            Date dateBirth = clientFound.getYearbirth();
-
-            clietnMap.put("Yearbirth", dateString);
-            clietnMap.put("YearOld", Integer.toString(ageResult(dateBirth)));
-            clientRepository.delete(clientFound);
-
-            return clietnMap;
+            clientRepository.delete(client.get());
+            return getClientMap(client.get());
         }
     }
-
 
     public Map updateClient(Client client, int id) throws Exception {
         Optional<Client> clientExist = clientRepository.findById(id);//obtengo el cliente por id
@@ -169,8 +120,6 @@ public class ClientService {
             return getClientMap(clientExist.get());
         }
     }
-
-
 
     private int ageResult(Date dateBirth){
             Date fechaActual = new Date();
