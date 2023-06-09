@@ -44,9 +44,6 @@ public class ClientController {
         }
     }
 
-
-
-
     @PostMapping
     public ResponseEntity<Object> postClient (@RequestBody Client client) {
         try {
@@ -101,6 +98,27 @@ public class ClientController {
         } catch (Exception e) {
             return ResponseHandler.generateResponse(
                     e.getMessage(),
+                    HttpStatus.INTERNAL_SERVER_ERROR,
+                    null
+            );
+        }
+    }
+
+   @PutMapping(path = "{id}")
+    public ResponseEntity<Object> putClient (  @PathVariable("id") int id, @RequestBody Client client){
+        try {
+            System.out.println("Antes de entrar al servicio" + client);
+            Map<String, String> clientMap = new HashMap<>();//declaro e inicializo un objeto del tipo HashMap
+            clientMap = clientService.updateClient(client,id);//obtengo el objeto map
+            // Client clientSaved = clientService.postClient(client);
+            return ResponseHandler.generateResponse(
+                    "Data retrieved successfully",
+                    HttpStatus.OK,
+                    clientMap
+            );
+        } catch (Exception e) {
+            return ResponseHandler.generateResponse(
+                    e.getMessage() + " o  [el formato de la fecha ingresada es incorrecto. El formato debe ser dd-MM-yyyy]",
                     HttpStatus.INTERNAL_SERVER_ERROR,
                     null
             );
