@@ -1,4 +1,4 @@
-package com.coderHouse.FacturacionEntregaFinalLetticugna.model;
+package com.coderhouse.clase11.ApiRest.PostmanII.model;
 
 import jakarta.persistence.*;
 
@@ -7,6 +7,7 @@ import java.util.List;
 @Entity
 @Table(name = "client")
 public class Client {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -18,20 +19,20 @@ public class Client {
     private String lastname;
     @Column(nullable = false, unique = true)
 
-    private long  docnumber;
+    private String docnumber;
 
-/*    @OneToMany(mappedBy = "client")
-    private List<Invoice> invoice;*/
+    @OneToMany(mappedBy = "client")
+    private List<Invoice> invoice;
 
     //RESTO DE LOS MÉTODOS
 
-/*    public List<Invoice> getInvoice() {
+    public List<Invoice> getInvoice() {
         return invoice;
     }
 
     public void setInvoice(List<Invoice> invoice) {
         this.invoice = invoice;
-    }*/
+    }
 
     public int getId() {
         return id;
@@ -57,11 +58,11 @@ public class Client {
         this.lastname = lastname;
     }
 
-    public long getDocnumber() {
+    public String getDocnumber() {
         return docnumber;
     }
 
-    public void setDocnumber(long docnumber) {
+    public void setDocnumber(String docnumber) {
         this.docnumber = docnumber;
     }
 
