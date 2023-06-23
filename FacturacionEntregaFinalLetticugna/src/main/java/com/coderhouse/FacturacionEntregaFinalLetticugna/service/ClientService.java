@@ -31,7 +31,9 @@ public class ClientService {
         if(clientExist.isEmpty()){// si el cliente es null devuelvo null
             throw new Exception("Client not exist");
         } else {
+            clientRepository.save(client);
             return "El cliente con el id " + clientExist.get().getId() + " a sido modificado de la siguiente manera: Nombre "  +  clientExist.get().getName() + " | Apellido "+  clientExist.get().getLastname() + " | Documento "+  clientExist.get().getDocnumber();
+
         }
     }
 

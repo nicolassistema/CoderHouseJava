@@ -6,26 +6,24 @@ import com.coderhouse.FacturacionEntregaFinalLetticugna.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping(path = "api/v1/product")
 public class ProductController {
+
     @Autowired
     private ProductService productService;
-    //Create
-    @PostMapping
-    public ResponseEntity<Object> postProduct(@RequestBody Product product) {
+
+    @PutMapping(path = "{id}")
+    public ResponseEntity<Object> putProductById(@PathVariable("id") int id, @RequestBody Product product){
         try {
-            System.out.println(product);
-            Product productSaved = productService.postProduct(product);
+            System.out.println("Antes de entrar al servicio" + product);
+            String mensaje = productService.putProductById(product,id);
             return ResponseHandler.generateResponse(
                     "Data retrieved successfully",
                     HttpStatus.OK,
-                    productSaved
+                    mensaje
             );
         } catch (Exception e) {
             return ResponseHandler.generateResponse(

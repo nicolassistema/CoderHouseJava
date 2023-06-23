@@ -33,20 +33,20 @@ public class FacturacionEntregaFinalLetticugnaApplication implements CommandLine
 			//Parte 1: creación de clientes
 			Client cliente1 = new Client();
 			cliente1.setName("Horacio");
-			cliente1.setDocnumber("8922812");
+			cliente1.setDocnumber(8922812);
 			cliente1.setLastname("Guarani");
 			this.clientRepository.save(cliente1);
 
 			Client cliente2 = new Client();
 			cliente2.setName("Sebas");
 			cliente2.setLastname("Ancavil");
-			cliente2.setDocnumber("39540113");
+			cliente2.setDocnumber(39540113);
 			this.clientRepository.save(cliente2);
 
 			Client cliente3 = new Client();
 			cliente3.setName("Sebas");
 			cliente3.setLastname("Abad");
-			cliente3.setDocnumber("39540115");
+			cliente3.setDocnumber(39540115);
 			this.clientRepository.save(cliente3);
 
 			//Búsqueda con métodos customizados
@@ -65,6 +65,7 @@ public class FacturacionEntregaFinalLetticugnaApplication implements CommandLine
 			//Parte 2 creación de productos
 			Product remera = new Product();
 			remera.setCode("SJSxnms2992Ajkx");
+			remera.setTitle("Remera");
 			remera.setDescription("Una bonita remera azul");
 			remera.setPrice(24.99);
 			remera.setStock(100);
@@ -72,6 +73,7 @@ public class FacturacionEntregaFinalLetticugnaApplication implements CommandLine
 
 			Product auricularesBT = new Product();
 			auricularesBT.setCode("xnksasdSSascs");
+			auricularesBT.setTitle("Auriculares");
 			auricularesBT.setDescription("Duran una banda la batería");
 			auricularesBT.setPrice(35.99);
 			auricularesBT.setStock(200);
@@ -79,6 +81,7 @@ public class FacturacionEntregaFinalLetticugnaApplication implements CommandLine
 
 			Product sillaLuxor = new Product();
 			sillaLuxor.setCode("23sjcszbt");
+			sillaLuxor.setTitle("Silla");
 			sillaLuxor.setDescription("Lujo y comodidad");
 			sillaLuxor.setPrice(66.56);
 			sillaLuxor.setStock(350);
@@ -86,6 +89,7 @@ public class FacturacionEntregaFinalLetticugnaApplication implements CommandLine
 
 			Product setVajillas = new Product();
 			setVajillas.setCode("223123");
+			setVajillas.setTitle("Juego de platos");
 			setVajillas.setDescription("Completísimo set de vajillas");
 			setVajillas.setPrice(66.56);
 			setVajillas.setStock(350);
@@ -93,6 +97,7 @@ public class FacturacionEntregaFinalLetticugnaApplication implements CommandLine
 
 			Product poste = new Product();
 			poste.setCode("282812");
+			poste.setTitle("Parlante");
 			poste.setDescription("Enorme poste de luz de 22 Gigowatts");
 			poste.setPrice(120.22);
 			poste.setStock(100);

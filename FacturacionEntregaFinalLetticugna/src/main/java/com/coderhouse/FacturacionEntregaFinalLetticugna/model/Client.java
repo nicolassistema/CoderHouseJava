@@ -7,7 +7,6 @@ import java.util.List;
 @Entity
 @Table(name = "client")
 public class Client {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -15,11 +14,9 @@ public class Client {
     @Column(nullable = false)
     private String name;
     @Column(nullable = false)
-
     private String lastname;
     @Column(nullable = false, unique = true)
-
-    private String docnumber;
+    private long docnumber;
 
     @OneToMany(mappedBy = "client")
     private List<Invoice> invoice;
@@ -58,11 +55,11 @@ public class Client {
         this.lastname = lastname;
     }
 
-    public String getDocnumber() {
+    public long getDocnumber() {
         return docnumber;
     }
 
-    public void setDocnumber(String docnumber) {
+    public void setDocnumber(long docnumber) {
         this.docnumber = docnumber;
     }
 
