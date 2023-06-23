@@ -29,7 +29,7 @@ public class InvoiceService {
     public InvoiceDTO postInvoice (RequestInvoice requestInvoice) throws Exception {
 
         //Buscamos al cliente a través de su id
-        Client clientExist = clientService.getClient(requestInvoice.getClient_id());
+        Client clientExist = clientService.getClientById(requestInvoice.getClient_id());
         //Buscamos los productos
         List<Product> productList = productService.getProductsById(requestInvoice.getProduct_list());
 

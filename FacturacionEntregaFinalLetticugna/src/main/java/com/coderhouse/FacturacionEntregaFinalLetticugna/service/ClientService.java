@@ -17,7 +17,7 @@ public class ClientService {
         return clientRepository.save(client);
     }
 
-    public Client getClient(int id) throws Exception {
+    public Client getClientById(int id) throws Exception {
         Optional<Client> cliente = clientRepository.findById(id);
         if(cliente.isEmpty()){
             throw new Exception("Client with id: " + id + ", not found");
@@ -26,8 +26,29 @@ public class ClientService {
         }
     }
 
+    public String updateClientById(Client client, int id) throws Exception {
+        Optional<Client> clientExist = clientRepository.findById(id);//obtengo el cliente por id
+        if(clientExist.isEmpty()){// si el cliente es null devuelvo null
+            throw new Exception("Client not exist");
+        } else {
+            return "El cliente con el id " + clientExist.get().getId() + " a sido modificado de la siguiente manera: Nombre "  +  clientExist.get().getName() + " | Apellido "+  clientExist.get().getLastname() + " | Documento "+  clientExist.get().getDocnumber();
+        }
+    }
+
+    public String deleteClientById(int id) throws Exception {
+        Optional<Client> client = clientRepository.findById(id);//obtengo el cliente por id
+        if(client.isEmpty()){// si el cliente es null devuelvo null
+            return null;
+        } else {
+            clientRepository.delete(client.get());
+            return "El cliente " + client.get().getId() + " a sido eliminado de la lista";
+        }
+    }
+
     public boolean clientExist (int id) throws Exception {
         Optional<Client> cliente = clientRepository.findById(id);
         return cliente.isPresent();
     }
+
+
 }

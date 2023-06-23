@@ -2,3 +2,8 @@
 org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "SELECT * FROM client invoice [*]client"
 Syntax error in SQL statement "SELECT * FROM client invoice [*]client"; SQL statement:
 SELECT * FROM client invoice client [42000-214]
+2023-06-22 22:09:07 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "SELECT * FROM invoice_detail \000d\000a[*]SELECT * FROM invoice"
+Syntax error in SQL statement "SELECT * FROM invoice_detail \000d\000a[*]SELECT * FROM invoice"; SQL statement:
+SELECT * FROM invoice_detail 
+SELECT * FROM invoice [42000-214]
