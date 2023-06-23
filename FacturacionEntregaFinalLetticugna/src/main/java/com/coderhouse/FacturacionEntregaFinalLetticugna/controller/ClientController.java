@@ -1,8 +1,9 @@
-package com.coderhouse.clase11.ApiRest.PostmanII.controller;
+package com.coderhouse.FacturacionEntregaFinalLetticugna.controller;
 
-import com.coderhouse.clase11.ApiRest.PostmanII.middleware.ResponseHandler;
-import com.coderhouse.clase11.ApiRest.PostmanII.model.Client;
-import com.coderhouse.clase11.ApiRest.PostmanII.service.ClientService;
+
+import com.coderhouse.FacturacionEntregaFinalLetticugna.middleware.ResponseHandler;
+import com.coderhouse.FacturacionEntregaFinalLetticugna.model.Client;
+import com.coderhouse.FacturacionEntregaFinalLetticugna.service.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

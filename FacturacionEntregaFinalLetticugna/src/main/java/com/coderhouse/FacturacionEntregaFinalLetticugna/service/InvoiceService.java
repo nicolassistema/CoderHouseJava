@@ -1,8 +1,9 @@
-package com.coderhouse.clase11.ApiRest.PostmanII.service;
+package com.coderhouse.FacturacionEntregaFinalLetticugna.service;
 
-import com.coderhouse.clase11.ApiRest.PostmanII.model.*;
-import com.coderhouse.clase11.ApiRest.PostmanII.repository.ClientRepository;
-import com.coderhouse.clase11.ApiRest.PostmanII.repository.InvoiceRepository;
+
+import com.coderhouse.FacturacionEntregaFinalLetticugna.model.*;
+import com.coderhouse.FacturacionEntregaFinalLetticugna.repository.ClientRepository;
+import com.coderhouse.FacturacionEntregaFinalLetticugna.repository.InvoiceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -95,7 +96,7 @@ public class InvoiceService {
                 invoice_details
         );
 
-        /*return new InvoiceDTO(
+       /* return new InvoiceDTO(
                 invoiceFound.get().getId(),
                 invoiceFound.get().getCreated_at(),
                 invoiceFound.get().getTotal()

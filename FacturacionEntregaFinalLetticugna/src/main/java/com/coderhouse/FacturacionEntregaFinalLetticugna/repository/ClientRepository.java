@@ -1,7 +1,7 @@
-package com.coderhouse.clase11.ApiRest.PostmanII.repository;
+package com.coderhouse.FacturacionEntregaFinalLetticugna.repository;
 
-import com.coderhouse.clase11.ApiRest.PostmanII.model.Client;
-import com.coderhouse.clase11.ApiRest.PostmanII.model.InvoiceDTO;
+
+import com.coderhouse.FacturacionEntregaFinalLetticugna.model.Client;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;

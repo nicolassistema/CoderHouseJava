@@ -1,6 +1,4 @@
-package com.coderhouse.clase11.ApiRest.PostmanII.model;
-
-import java.util.List;
+package com.coderhouse.FacturacionEntregaFinalLetticugna.model;
 
 public class InvoiceDTO {
     private int invoice_id;

@@ -1,9 +1,9 @@
-package com.coderhouse.clase11.ApiRest.PostmanII.service;
+package com.coderhouse.FacturacionEntregaFinalLetticugna.service;
 
-import com.coderhouse.clase11.ApiRest.PostmanII.model.Client;
-import com.coderhouse.clase11.ApiRest.PostmanII.model.Product;
-import com.coderhouse.clase11.ApiRest.PostmanII.model.RequestProductDetail;
-import com.coderhouse.clase11.ApiRest.PostmanII.repository.ProductRepository;
+
+import com.coderhouse.FacturacionEntregaFinalLetticugna.model.Product;
+import com.coderhouse.FacturacionEntregaFinalLetticugna.model.RequestProductDetail;
+import com.coderhouse.FacturacionEntregaFinalLetticugna.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

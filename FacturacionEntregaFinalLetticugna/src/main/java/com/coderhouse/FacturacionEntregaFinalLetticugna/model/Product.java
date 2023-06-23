@@ -1,6 +1,8 @@
-package com.coderhouse.clase11.ApiRest.PostmanII.model;
+package com.coderhouse.FacturacionEntregaFinalLetticugna.model;
 
 import jakarta.persistence.*;
+
+import java.util.List;
 
 @Entity
 @Table(name = "product")
@@ -12,6 +14,8 @@ public class Product {
     private String code;
     private double price;
     private int stock;
+
+
 
     //Getters y setters y override methods
     public int getId() {
@@ -53,6 +57,8 @@ public class Product {
     public void setStock(int stock) {
         this.stock = stock;
     }
+
+
 
     @Override
     public String toString() {

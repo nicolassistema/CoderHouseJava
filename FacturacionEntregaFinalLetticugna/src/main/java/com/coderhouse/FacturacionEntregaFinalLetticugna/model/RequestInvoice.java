@@ -1,4 +1,4 @@
-package com.coderhouse.clase11.ApiRest.PostmanII.model;
+package com.coderhouse.FacturacionEntregaFinalLetticugna.model;
 
 import java.util.List;
 
