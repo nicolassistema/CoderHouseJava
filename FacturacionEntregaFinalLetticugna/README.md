@@ -5,6 +5,8 @@
 1. Abrir el proyecto en IntelliJ IDE.<br>
 2. Correr la aplicación JavaApplication dentro de src/main/java/com/coderhouse/FacturacionEntregaFinalLetticugna/FacturacionEntregaFinalLetticugnaApplication<br>
 
+# Datos para testear<br>
+### Dentro de la carpeta doc se encuentra un archivo con datos para cargar en el main y asi poder cargar datos ni bien se ejecute la aplicacion 
 
 # Dependencias<br>
 1. ### SpringBoot Data JPA<br>
