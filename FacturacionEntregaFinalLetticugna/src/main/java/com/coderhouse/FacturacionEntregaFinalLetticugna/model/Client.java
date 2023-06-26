@@ -1,7 +1,6 @@
 package com.coderhouse.FacturacionEntregaFinalLetticugna.model;
 
 import jakarta.persistence.*;
-
 import java.util.List;
 
 @Entity
@@ -11,25 +10,14 @@ public class Client {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(nullable = false)
     private String name;
-    @Column(nullable = false)
+
     private String lastname;
-    @Column(nullable = false, unique = true)
+
     private long docnumber;
 
     @OneToMany(mappedBy = "client")
     private List<Invoice> invoice;
-
-    //RESTO DE LOS MÉTODOS
-
-    public List<Invoice> getInvoice() {
-        return invoice;
-    }
-
-    public void setInvoice(List<Invoice> invoice) {
-        this.invoice = invoice;
-    }
 
     public int getId() {
         return id;
@@ -61,6 +49,22 @@ public class Client {
 
     public void setDocnumber(long docnumber) {
         this.docnumber = docnumber;
+    }
+
+    //Validators
+    public boolean naneValidate(String name) {
+        return name != null && name != "";
+    }
+
+    public boolean lastNameValidate(String lastName) {
+        return lastName != null && lastName != "";
+    }
+
+    public boolean docNumberValidate(Long docNumber) {
+
+        System.out.println("docNumber != null: "+ (docNumber == null));
+        System.out.println("docNumber: "+ docNumber );
+        return docNumber == null || docNumber == 0;
     }
 
     @Override

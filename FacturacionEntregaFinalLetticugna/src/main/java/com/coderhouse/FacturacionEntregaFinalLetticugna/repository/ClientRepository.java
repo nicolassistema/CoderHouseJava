@@ -23,4 +23,11 @@ public interface ClientRepository extends JpaRepository<Client, Integer> {
     @Query(value = "SELECT * FROM client a WHERE name = ?1 ORDER BY lastname ASC", nativeQuery = true)
     List<Client> getByNameOrderedByLastnameNativeQuery(String name);
 
+    @Query(value = "SELECT c.id, c.name, c.lastname, c.docnumber  FROM client c inner join invoice i  on i.client_id = c.id where i.id = :invoice_id", nativeQuery = true)
+    Client getClientIdByIDInvoice(int invoice_id);
+
+
+
+
+
 }

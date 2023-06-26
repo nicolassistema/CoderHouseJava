@@ -1,6 +1,5 @@
 package com.coderhouse.FacturacionEntregaFinalLetticugna.repository;
 
-
 import com.coderhouse.FacturacionEntregaFinalLetticugna.model.Invoice;
 import com.coderhouse.FacturacionEntregaFinalLetticugna.model.InvoiceDTO;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -19,5 +18,6 @@ public interface InvoiceRepository extends JpaRepository<Invoice, Integer> {
             "i.total" +
             ") FROM Invoice i INNER JOIN i.client c WHERE c.id = :id")
     List<InvoiceDTO> getInvoicesByClientById(@Param("id") int id);
+
 
 }

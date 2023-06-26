@@ -2,8 +2,6 @@ package com.coderhouse.FacturacionEntregaFinalLetticugna.model;
 
 import jakarta.persistence.*;
 
-import java.util.List;
-
 @Entity
 @Table(name = "product")
 public class Product {
@@ -11,17 +9,11 @@ public class Product {
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(nullable = false)
     private String title;
-    @Column(nullable = false)
     private String description;
-    @Column(nullable = false)
     private String code;
-    @Column(nullable = false)
-    private double price;
-    @Column(nullable = false)
-    private int stock;
-
+    private Double price;
+    private Integer stock;
 
 
     //Getters y setters y override methods
@@ -61,7 +53,7 @@ public class Product {
         return price;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(Double price) {
         this.price = price;
     }
 
@@ -69,9 +61,27 @@ public class Product {
         return stock;
     }
 
-    public void setStock(int stock) {
+    public void setStock(Integer stock) {
         this.stock = stock;
     }
+
+    //Validators
+    public boolean titleValidate(String title) {
+        return title != null && title != "";
+    }
+    public boolean descriptionValidate(String description) {
+        return description != null && description != "";
+    }
+    public boolean codeValidate(String code) {
+        return code != null && code != "";
+    }
+    public boolean priceValidate(Double price) {
+        return price != null;
+    }
+    public boolean stockValidate(Integer stock) {
+        return stock != null;
+    }
+
 
     @Override
     public String toString() {

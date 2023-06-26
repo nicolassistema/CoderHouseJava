@@ -1,17 +1,24 @@
 package com.coderhouse.FacturacionEntregaFinalLetticugna.model;
 
 public class InvoiceDetailDTO {
+
+    private String title;
     private String description;
     private String code;
     private double price;
     private int quantity;
 
-    public InvoiceDetailDTO(String description, String code, double price, int quantity) {
+    public InvoiceDetailDTO(String title,String description, String code, double price, int quantity) {
+        this.title = title;
         this.description = description;
         this.code = code;
         this.price = price;
         this.quantity = quantity;
     }
+
+    public String getTitle() {return title;}
+
+    public void setTitle(String title) {this.title = title;}
 
     public String getDescription() {
         return description;

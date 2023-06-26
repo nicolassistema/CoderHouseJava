@@ -1,21 +1,20 @@
 package com.coderhouse.FacturacionEntregaFinalLetticugna.controller;
 
-
 import com.coderhouse.FacturacionEntregaFinalLetticugna.middleware.ResponseHandler;
 import com.coderhouse.FacturacionEntregaFinalLetticugna.model.Client;
 import com.coderhouse.FacturacionEntregaFinalLetticugna.service.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
+@Validated
 @RequestMapping(path = "api/v1/client")
 public class ClientController {
     @Autowired
     private ClientService clientService;
-
-    //CRUD cliente
 
     //Create
     @PostMapping
@@ -24,14 +23,14 @@ public class ClientController {
             System.out.println(client);
             Client clientSaved = clientService.postClient(client);
             return ResponseHandler.generateResponse(
-                    "Data retrieved successfully",
+                    "The client was created correctly",
                     HttpStatus.OK,
                     clientSaved
             );
         } catch (Exception e) {
             return ResponseHandler.generateResponse(
                     e.getMessage(),
-                    HttpStatus.INTERNAL_SERVER_ERROR,
+                    HttpStatus.OK,
                     null
             );
         }
@@ -57,24 +56,22 @@ public class ClientController {
     }
 
     @PutMapping(path = "{id}")
-    public ResponseEntity<Object> putClientById (  @PathVariable("id") int id, @RequestBody Client client){
+    public ResponseEntity<Object> putClientById (@PathVariable("id") int id, @RequestBody Client client){
         try {
-            System.out.println("Antes de entrar al servicio" + client);
             String mensaje = clientService.updateClientById(client,id);//obtengo el objeto map
             return ResponseHandler.generateResponse(
-                    "Data retrieved successfully",
+                    "The client was successfully modified",
                     HttpStatus.OK,
                     mensaje
             );
         } catch (Exception e) {
             return ResponseHandler.generateResponse(
                     e.getMessage(),
-                    HttpStatus.INTERNAL_SERVER_ERROR,
+                    HttpStatus.OK,
                     null
             );
         }
     }
-
 
     @DeleteMapping(path = "{id}")
     public ResponseEntity<Object> deleteClientById (@PathVariable() int id) {
@@ -89,11 +86,10 @@ public class ClientController {
         } catch (Exception e) {
             return ResponseHandler.generateResponse(
                     e.getMessage(),
-                    HttpStatus.INTERNAL_SERVER_ERROR,
+                    HttpStatus.OK,
                     null
             );
         }
     }
-
 
 }

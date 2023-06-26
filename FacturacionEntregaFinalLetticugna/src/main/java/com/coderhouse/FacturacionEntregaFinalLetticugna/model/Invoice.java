@@ -1,7 +1,6 @@
 package com.coderhouse.FacturacionEntregaFinalLetticugna.model;
 
 import jakarta.persistence.*;
-
 import java.util.List;
 
 @Entity
@@ -21,7 +20,6 @@ public class Invoice {
 
     private double total;
 
-    //Resto de los métodos
 
     public int getId() {
         return id;

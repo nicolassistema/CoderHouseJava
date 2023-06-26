@@ -1,8 +1,9 @@
 package com.coderhouse.FacturacionEntregaFinalLetticugna.model;
 
 public class RequestProductDetail {
-    private int productId;
-    private int quantity;
+    private Integer productId;
+
+    private Integer quantity;
 
     public RequestProductDetail(int productId, int quantity) {
         this.productId = productId;
@@ -13,15 +14,9 @@ public class RequestProductDetail {
         return productId;
     }
 
-    public void setProductId(int productId) {
-        this.productId = productId;
-    }
-
     public int getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
-    }
+
 }

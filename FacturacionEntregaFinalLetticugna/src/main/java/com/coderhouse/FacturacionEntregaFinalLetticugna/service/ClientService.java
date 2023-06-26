@@ -1,11 +1,10 @@
 package com.coderhouse.FacturacionEntregaFinalLetticugna.service;
 
-
-import com.coderhouse.FacturacionEntregaFinalLetticugna.model.Client;
+import com.coderhouse.FacturacionEntregaFinalLetticugna.model.*;
 import com.coderhouse.FacturacionEntregaFinalLetticugna.repository.ClientRepository;
+import com.coderhouse.FacturacionEntregaFinalLetticugna.repository.InvoiceDetailRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.Optional;
 
 @Service
@@ -13,8 +12,19 @@ public class ClientService {
     @Autowired
     private ClientRepository clientRepository;
 
+    private InvoiceDetailRepository invoiceDetailRepository;
+
     public Client postClient(Client client) throws Exception {
-        return clientRepository.save(client);
+        if(!client.naneValidate(client.getName())){
+            throw new Exception("Name Null");
+        }else if(!client.lastNameValidate(client.getLastname())){
+            throw new Exception("LastName Null");
+        }else if(client.docNumberValidate(client.getDocnumber())){
+            throw new Exception("DocNumber Null");
+        }else{
+            clientRepository.save(client);
+            return null;
+        }
     }
 
     public Client getClientById(int id) throws Exception {
@@ -31,26 +41,34 @@ public class ClientService {
         if(clientExist.isEmpty()){// si el cliente es null devuelvo null
             throw new Exception("Client not exist");
         } else {
-            clientRepository.save(client);
-            return "El cliente con el id " + clientExist.get().getId() + " a sido modificado de la siguiente manera: Nombre "  +  clientExist.get().getName() + " | Apellido "+  clientExist.get().getLastname() + " | Documento "+  clientExist.get().getDocnumber();
-
+            if(!client.naneValidate(client.getName())){
+                throw new Exception("Name Null");
+            }else if(!client.lastNameValidate(client.getLastname())){
+                throw new Exception("LastName Null");
+            }else if(client.docNumberValidate(client.getDocnumber())){
+                throw new Exception("DocNumber Null");
+            }else{
+                clientRepository.save(client);
+                return null;
+            }
         }
     }
 
     public String deleteClientById(int id) throws Exception {
-        Optional<Client> client = clientRepository.findById(id);//obtengo el cliente por id
-        if(client.isEmpty()){// si el cliente es null devuelvo null
-            return null;
-        } else {
-            clientRepository.delete(client.get());
-            return "El cliente " + client.get().getId() + " a sido eliminado de la lista";
+
+        try {
+            Optional<Client> client = clientRepository.findById(id);//obtengo el cliente por id
+            if(client.isEmpty()){// si el cliente es null devuelvo null
+                throw new Exception("Client not exist");
+            } else {
+                clientRepository.delete(client.get());
+                return null;
+            }
+        } catch (Exception e) {
+            throw new Exception("No se puede borrar este Cliente  ya que tiene invoices cargados");
         }
-    }
 
-    public boolean clientExist (int id) throws Exception {
-        Optional<Client> cliente = clientRepository.findById(id);
-        return cliente.isPresent();
-    }
 
+    }
 
 }

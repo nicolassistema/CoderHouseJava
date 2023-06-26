@@ -2,14 +2,14 @@ package com.coderhouse.FacturacionEntregaFinalLetticugna.model;
 
 import java.util.List;
 
-public class RequestInvoice {
+public class InvoiceRequest {
 
     private int client_id;
 
-    //Luego añadiremos los details que serán añadidos.
+
     private List<RequestProductDetail> product_list;
 
-    public RequestInvoice(int client_id, List<RequestProductDetail> product_list) {
+    public InvoiceRequest(int client_id, List<RequestProductDetail> product_list) {
         this.client_id = client_id;
         this.product_list = product_list;
     }

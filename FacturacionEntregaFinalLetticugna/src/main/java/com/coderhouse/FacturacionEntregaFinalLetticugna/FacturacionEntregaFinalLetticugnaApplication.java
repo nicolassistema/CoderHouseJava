@@ -12,13 +12,11 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class FacturacionEntregaFinalLetticugnaApplication implements CommandLineRunner {
 
-
 	@Autowired
 	private ProductRepository productoRepository;
 
 	@Autowired
 	private ClientRepository clientRepository;
-
 
 	public static void main(String[] args) {
 		SpringApplication.run(FacturacionEntregaFinalLetticugnaApplication.class, args);

@@ -1,5 +1,7 @@
 package com.coderhouse.FacturacionEntregaFinalLetticugna.model;
 
+import java.util.Date;
+
 public class InvoiceDTO {
     private int invoice_id;
     private String created_at;
@@ -34,6 +36,7 @@ public class InvoiceDTO {
     public void setTotal(double total) {
         this.total = total;
     }
+
 
     @Override
     public String toString() {
