@@ -97,7 +97,6 @@ public class InvoiceService {
             productAux.setStock(productAux.getStock() - requestInvoice.getProduct_list().get(i).getQuantity());
             total += product.getPrice() * requestInvoice.getProduct_list().get(i).getQuantity();
             productListAux.add(productAux);
-            productService.postProduct(productAux);
             i++;
         }
 
