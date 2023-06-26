@@ -6,6 +6,7 @@ import com.coderhouse.FacturacionEntregaFinalLetticugna.repository.InvoiceDetail
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -16,6 +17,14 @@ public class ClientService {
     private InvoiceDetailRepository invoiceDetailRepository;
 
     public Client postClient(Client client) throws Exception {
+        List<Client> clientList = clientRepository.findAll();
+        if (clientList.size() > 0) {
+            for (Client clientExistente : clientList) {
+                if (clientExistente.getDocnumber() == client.getDocnumber()) {
+                    throw new Exception("The docnumber already exists");
+                }
+            }
+        }
         if (!client.naneValidate(client.getName())) {
             throw new Exception("Name Null");
         } else if (!client.lastNameValidate(client.getLastname())) {
@@ -39,6 +48,17 @@ public class ClientService {
 
     public String updateClientById(Client client, int id) throws Exception {
         Optional<Client> clientExist = clientRepository.findById(id);//obtengo el cliente por id
+
+        List<Client> clientList = clientRepository.findAll();
+        if (clientList.size() > 0) {
+            for (Client clientExistente : clientList) {
+                if (clientExistente.getDocnumber() == client.getDocnumber()) {
+                    throw new Exception("The docnumber already exists");
+                }
+            }
+        }
+
+
         if (clientExist.isEmpty()) {// si el cliente es null devuelvo null
             throw new Exception("Client not exist");
         } else {
@@ -68,4 +88,6 @@ public class ClientService {
             throw new Exception("The Client cannot be deleted as it has invoices loaded");
         }
     }
+
+
 }

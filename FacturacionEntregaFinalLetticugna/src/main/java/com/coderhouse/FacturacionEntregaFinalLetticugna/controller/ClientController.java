@@ -49,7 +49,7 @@ public class ClientController {
         } catch (Exception e) {
             return ResponseHandler.generateResponse(
                     e.getMessage(),
-                    HttpStatus.INTERNAL_SERVER_ERROR,
+                    HttpStatus.OK,
                     null
             );
         }

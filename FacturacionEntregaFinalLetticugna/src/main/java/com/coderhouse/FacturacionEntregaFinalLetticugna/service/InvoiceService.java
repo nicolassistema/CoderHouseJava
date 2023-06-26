@@ -4,7 +4,6 @@ import com.coderhouse.FacturacionEntregaFinalLetticugna.model.*;
 import com.coderhouse.FacturacionEntregaFinalLetticugna.repository.ClientRepository;
 import com.coderhouse.FacturacionEntregaFinalLetticugna.repository.InvoiceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
@@ -25,67 +24,6 @@ public class InvoiceService {
 
     @Autowired
     private ClientService clientService;
-
-   /* public InvoiceDTO postInvoice (InvoiceRequest requestInvoice) throws Exception {
-
-        //Buscamos al cliente a través de su id
-        Client clientExist = clientService.getClientById(requestInvoice.getClient_id());
-        //Buscamos los productos
-        List<Product> productList = productService.getProductsById(requestInvoice.getProduct_list());
-
-
-        double total = 0;
-        int i = 0;
-
-            for (Product product :
-                    productList) {
-
-                System.out.println("iteracion: (" + i + ") | precio: " + product.getPrice() + " | Cantidad: " + requestInvoice.getProduct_list().get(i).getQuantity());
-                total += product.getPrice() * requestInvoice.getProduct_list().get(i).getQuantity();
-
-
-                i++;
-            }
-
-
-
-
-        //Instanciamos un objeto invoice
-        Invoice invoiceCreated = new Invoice();
-
-        //Setteamos la fecha del invoice
-        invoiceCreated.setCreated_at(new Date().toString());
-
-        //Setteamos al cliente dentro del invoice
-        invoiceCreated.setClient(clientExist);
-
-        invoiceCreated.setTotal(total);
-        //Guardamos el invoice antes de guardar el detalle
-        invoiceCreated = invoiceRepository.save(invoiceCreated);
-
-        //Settamos los invoice_details y los guardamos
-        i = 0;
-        for (Product productForDetail:
-                productList) {
-            InvoiceDetail newInvoice = new InvoiceDetail();
-            newInvoice.setPrice(productForDetail.getPrice());
-            newInvoice.setInvoice(invoiceCreated);
-            newInvoice.setProduct(productForDetail);
-            newInvoice.setQuantity(requestInvoice.getProduct_list().get(i).getQuantity());
-            invoiceDetailService.saveInvoiceDetail(newInvoice);
-            i++;
-        }
-
-        //Por último retornamos el DTO
-        return new InvoiceDTO(
-                invoiceCreated.getId(),
-                invoiceCreated.getCreated_at(),
-                invoiceCreated.getTotal()
-        );
-
-
-    }*/
-
 
     public InvoiceDTO postInvoice(InvoiceRequest requestInvoice) throws Exception {
 
@@ -201,8 +139,12 @@ public class InvoiceService {
     }
 
     public List<InvoiceDTO> getInvoicesByClientId(int id) throws Exception {
-        System.out.println("Entro en getInvoicesByClientId: " + id);
-        return invoiceRepository.getInvoicesByClientById(id);
+
+        if (invoiceRepository.getInvoicesByClientById(id).size() > 0) {
+            return invoiceRepository.getInvoicesByClientById(id);
+        } else {
+            throw new Exception("There are no invoices created by the client to search");
+        }
     }
 
     public InvoiceWithDetailsDTO getInvoiceById(int invoice_id) throws Exception {

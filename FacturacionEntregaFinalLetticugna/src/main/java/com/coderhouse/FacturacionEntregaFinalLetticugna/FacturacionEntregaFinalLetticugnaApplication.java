@@ -1,7 +1,6 @@
 package com.coderhouse.FacturacionEntregaFinalLetticugna;
 
-import com.coderhouse.FacturacionEntregaFinalLetticugna.model.Client;
-import com.coderhouse.FacturacionEntregaFinalLetticugna.model.Product;
+
 import com.coderhouse.FacturacionEntregaFinalLetticugna.repository.ClientRepository;
 import com.coderhouse.FacturacionEntregaFinalLetticugna.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,99 +11,20 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class FacturacionEntregaFinalLetticugnaApplication implements CommandLineRunner {
 
-	@Autowired
-	private ProductRepository productoRepository;
+    @Autowired
+    private ProductRepository productoRepository;
 
-	@Autowired
-	private ClientRepository clientRepository;
+    @Autowired
+    private ClientRepository clientRepository;
 
-	public static void main(String[] args) {
-		SpringApplication.run(FacturacionEntregaFinalLetticugnaApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(FacturacionEntregaFinalLetticugnaApplication.class, args);
+    }
 
-	@Override
-	public void run(String... args) throws Exception {
+    @Override
+    public void run(String... args) throws Exception {
 
-		System.out.println("Server listening. Access H2 on: http://localhost:8888/h2-console");
-		//Carga automática de clientes y productos
-		try {
-			//Parte 1: creación de clientes
-			Client cliente1 = new Client();
-			cliente1.setName("Horacio");
-			cliente1.setDocnumber(8922812);
-			cliente1.setLastname("Guarani");
-			this.clientRepository.save(cliente1);
+        System.out.println("Server listening. Access H2 on: http://localhost:8888/h2-console");
 
-			Client cliente2 = new Client();
-			cliente2.setName("Sebas");
-			cliente2.setLastname("Ancavil");
-			cliente2.setDocnumber(39540113);
-			this.clientRepository.save(cliente2);
-
-			Client cliente3 = new Client();
-			cliente3.setName("Sebas");
-			cliente3.setLastname("Abad");
-			cliente3.setDocnumber(39540115);
-			this.clientRepository.save(cliente3);
-
-			//Búsqueda con métodos customizados
-			/*List<Client> clientes = this.clientRepository.findByNameLike("%a%");
-			System.out.println(clientes.size());
-			printClientes(clientes);
-
-			List<Client> clientes2 = this.clientRepository.getByNameOrderedByLastnameJPQL("Sebas");
-			System.out.println(clientes2.size());
-			printClientes(clientes2);
-
-			List<Client> clientes3 = this.clientRepository.getByNameOrderedByLastnameNativeQuery("Sebas");
-			System.out.println(clientes3.size());
-			printClientes(clientes3);
-*/
-			//Parte 2 creación de productos
-			Product remera = new Product();
-			remera.setCode("SJSxnms2992Ajkx");
-			remera.setTitle("Remera");
-			remera.setDescription("Una bonita remera azul");
-			remera.setPrice(24.99);
-			remera.setStock(100);
-			this.productoRepository.save(remera);
-
-			Product auricularesBT = new Product();
-			auricularesBT.setCode("xnksasdSSascs");
-			auricularesBT.setTitle("Auriculares");
-			auricularesBT.setDescription("Duran una banda la batería");
-			auricularesBT.setPrice(35.99);
-			auricularesBT.setStock(200);
-			this.productoRepository.save(auricularesBT);
-
-			Product sillaLuxor = new Product();
-			sillaLuxor.setCode("23sjcszbt");
-			sillaLuxor.setTitle("Silla");
-			sillaLuxor.setDescription("Lujo y comodidad");
-			sillaLuxor.setPrice(66.56);
-			sillaLuxor.setStock(350);
-			this.productoRepository.save(sillaLuxor);
-
-			Product setVajillas = new Product();
-			setVajillas.setCode("223123");
-			setVajillas.setTitle("Juego de platos");
-			setVajillas.setDescription("Completísimo set de vajillas");
-			setVajillas.setPrice(66.56);
-			setVajillas.setStock(350);
-			this.productoRepository.save(setVajillas);
-
-			Product poste = new Product();
-			poste.setCode("282812");
-			poste.setTitle("Parlante");
-			poste.setDescription("Enorme poste de luz de 22 Gigowatts");
-			poste.setPrice(120.22);
-			poste.setStock(100);
-			this.productoRepository.save(poste);
-
-			System.out.println("Server listening. Access H2 on: http://localhost:8888/h2-console");
-
-		} catch (Exception e) {
-			System.out.println(e.getMessage());
-		}
-	}
+    }
 }
