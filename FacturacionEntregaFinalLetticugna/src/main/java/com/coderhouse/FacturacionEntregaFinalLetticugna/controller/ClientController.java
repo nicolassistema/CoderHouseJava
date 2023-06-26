@@ -18,7 +18,7 @@ public class ClientController {
 
     //Create
     @PostMapping
-    public ResponseEntity<Object> postClient (@RequestBody Client client) {
+    public ResponseEntity<Object> postClient(@RequestBody Client client) {
         try {
             System.out.println(client);
             Client clientSaved = clientService.postClient(client);
@@ -37,7 +37,7 @@ public class ClientController {
     }
 
     @GetMapping(path = "{id}")
-    public ResponseEntity<Object> getClient (@PathVariable() int id) {
+    public ResponseEntity<Object> getClient(@PathVariable() int id) {
         try {
             System.out.println(id);
             Client clientFound = clientService.getClientById(id);
@@ -56,9 +56,9 @@ public class ClientController {
     }
 
     @PutMapping(path = "{id}")
-    public ResponseEntity<Object> putClientById (@PathVariable("id") int id, @RequestBody Client client){
+    public ResponseEntity<Object> putClientById(@PathVariable("id") int id, @RequestBody Client client) {
         try {
-            String mensaje = clientService.updateClientById(client,id);//obtengo el objeto map
+            String mensaje = clientService.updateClientById(client, id);//obtengo el objeto map
             return ResponseHandler.generateResponse(
                     "The client was successfully modified",
                     HttpStatus.OK,
@@ -74,7 +74,7 @@ public class ClientController {
     }
 
     @DeleteMapping(path = "{id}")
-    public ResponseEntity<Object> deleteClientById (@PathVariable() int id) {
+    public ResponseEntity<Object> deleteClientById(@PathVariable() int id) {
         try {
             System.out.println(id);
             String mensaje = clientService.deleteClientById(id);

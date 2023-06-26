@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
@@ -22,7 +23,7 @@ public class ProductController {
     private ProductService productService;
 
     @GetMapping(path = "{id}")
-    public ResponseEntity<Object> getProductById (@PathVariable() int id) {
+    public ResponseEntity<Object> getProductById(@PathVariable() int id) {
         try {
             System.out.println(id);
             Product productFound = productService.getProductById(id);
@@ -33,7 +34,7 @@ public class ProductController {
     }
 
     @PostMapping
-    public ResponseEntity<Object> postProduct (@RequestBody Product product) {
+    public ResponseEntity<Object> postProduct(@RequestBody Product product) {
         try {
             System.out.println(product);
             Product ProductSaved = productService.postProduct(product);
@@ -52,12 +53,12 @@ public class ProductController {
     }
 
     @PutMapping(path = "{id}")
-    public ResponseEntity<Object> updateProductById(@PathVariable("id") int id, @RequestBody Product product){
+    public ResponseEntity<Object> updateProductById(@PathVariable("id") int id, @RequestBody Product product) {
         try {
             System.out.println("Antes de entrar al servicio" + product);
-            String mensaje = productService.updateProductById(product,id);
+            String mensaje = productService.updateProductById(product, id);
             return ResponseHandler.generateResponse(
-                    "the product with the id " +id +" was modified successfully ",
+                    "the product with the id " + id + " was modified successfully ",
                     HttpStatus.OK,
                     mensaje
             );
@@ -71,12 +72,12 @@ public class ProductController {
     }
 
     @DeleteMapping(path = "{id}")
-    public ResponseEntity<Object> deleteProductById (@PathVariable() int id) {
+    public ResponseEntity<Object> deleteProductById(@PathVariable() int id) {
         try {
             System.out.println(id);
             String mensaje = productService.deleteProductById(id);
             return ResponseHandler.generateResponse(
-                    "the product with the id " +id +" was deleted successfully ",
+                    "the product with the id " + id + " was deleted successfully ",
                     HttpStatus.OK,
                     mensaje
             );
@@ -90,7 +91,7 @@ public class ProductController {
     }
 
     @GetMapping
-    public ResponseEntity<Object> getProductList () throws ParseException {
+    public ResponseEntity<Object> getProductList() throws ParseException {
         try {
             //  System.out.println(id);
             List<Product> list = new ArrayList<>();

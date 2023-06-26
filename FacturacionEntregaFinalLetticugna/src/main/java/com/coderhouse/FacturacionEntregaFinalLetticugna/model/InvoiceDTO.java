@@ -1,7 +1,5 @@
 package com.coderhouse.FacturacionEntregaFinalLetticugna.model;
 
-import java.util.Date;
-
 public class InvoiceDTO {
     private int invoice_id;
     private String created_at;

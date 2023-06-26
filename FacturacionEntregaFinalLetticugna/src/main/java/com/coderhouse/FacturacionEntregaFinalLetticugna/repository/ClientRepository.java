@@ -27,7 +27,4 @@ public interface ClientRepository extends JpaRepository<Client, Integer> {
     Client getClientIdByIDInvoice(int invoice_id);
 
 
-
-
-
 }

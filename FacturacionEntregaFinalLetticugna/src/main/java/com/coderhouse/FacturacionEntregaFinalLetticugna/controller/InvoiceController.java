@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 
 @RestController
@@ -16,8 +17,9 @@ import java.util.List;
 public class InvoiceController {
     @Autowired
     private InvoiceService invoiceService;
+
     @PostMapping
-    public ResponseEntity<Object> postInvoice (@RequestBody InvoiceRequest reqInvoice) {
+    public ResponseEntity<Object> postInvoice(@RequestBody InvoiceRequest reqInvoice) {
         try {
             System.out.println(reqInvoice);
             //DTO Data transfer object
@@ -37,7 +39,7 @@ public class InvoiceController {
     }
 
     @GetMapping(path = "{invoice_id}")
-    public ResponseEntity<Object> getInvoiceById (@PathVariable int invoice_id) {
+    public ResponseEntity<Object> getInvoiceById(@PathVariable int invoice_id) {
         try {
             System.out.println(invoice_id);
             InvoiceWithDetailsDTO data = invoiceService.getInvoiceById(invoice_id);
@@ -58,7 +60,7 @@ public class InvoiceController {
     }
 
     @GetMapping(path = "/client/{id}")
-    public ResponseEntity<Object> getInvoicesByClientId (@PathVariable int id){
+    public ResponseEntity<Object> getInvoicesByClientId(@PathVariable int id) {
         try {
             List<InvoiceDTO> data = invoiceService.getInvoicesByClientId(id);
             return ResponseHandler.generateResponse(

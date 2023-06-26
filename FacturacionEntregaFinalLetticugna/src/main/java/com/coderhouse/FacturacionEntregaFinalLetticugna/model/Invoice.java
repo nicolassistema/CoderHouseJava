@@ -1,6 +1,7 @@
 package com.coderhouse.FacturacionEntregaFinalLetticugna.model;
 
 import jakarta.persistence.*;
+
 import java.util.List;
 
 @Entity
@@ -9,17 +10,12 @@ public class Invoice {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-
     @ManyToOne
     private Client client;
-
     @OneToMany(mappedBy = "invoice")
     private List<InvoiceDetail> invoiceDetails;
-
     private String created_at;
-
     private double total;
-
 
     public int getId() {
         return id;

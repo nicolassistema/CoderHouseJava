@@ -9,11 +9,8 @@ public class Client {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-
     private String name;
-
     private String lastname;
-
     private long docnumber;
 
     @OneToMany(mappedBy = "client")

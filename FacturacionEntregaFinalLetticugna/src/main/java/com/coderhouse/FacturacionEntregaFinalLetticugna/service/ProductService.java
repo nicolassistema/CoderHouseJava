@@ -1,11 +1,9 @@
 package com.coderhouse.FacturacionEntregaFinalLetticugna.service;
 
-import com.coderhouse.FacturacionEntregaFinalLetticugna.model.Client;
 import com.coderhouse.FacturacionEntregaFinalLetticugna.model.Product;
 import com.coderhouse.FacturacionEntregaFinalLetticugna.model.RequestProductDetail;
 import com.coderhouse.FacturacionEntregaFinalLetticugna.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 
@@ -102,14 +100,8 @@ public class ProductService {
                 return null;
             }
         } catch (Exception e) {
-            throw new Exception("No se puede borrar este prodcuto ya que tiene invoices cargados");
+            throw new Exception("This product cannot be deleted as it has invoices loaded");
         }
-
-
-
     }
-
-
-
 
 }

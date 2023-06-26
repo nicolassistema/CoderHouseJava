@@ -6,7 +6,7 @@ import jakarta.persistence.*;
 @Table(name = "product")
 public class Product {
     @Id
-    @GeneratedValue (strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     private String title;
@@ -69,19 +69,22 @@ public class Product {
     public boolean titleValidate(String title) {
         return title != null && title != "";
     }
+
     public boolean descriptionValidate(String description) {
         return description != null && description != "";
     }
+
     public boolean codeValidate(String code) {
         return code != null && code != "";
     }
+
     public boolean priceValidate(Double price) {
         return price != null;
     }
+
     public boolean stockValidate(Integer stock) {
         return stock != null;
     }
-
 
     @Override
     public String toString() {

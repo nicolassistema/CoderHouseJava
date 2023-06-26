@@ -60,8 +60,6 @@ public class InvoiceDetail {
         this.quantity = quantity;
     }
 
-
-
     @Override
     public String toString() {
         return "InvoiceDetail{" +

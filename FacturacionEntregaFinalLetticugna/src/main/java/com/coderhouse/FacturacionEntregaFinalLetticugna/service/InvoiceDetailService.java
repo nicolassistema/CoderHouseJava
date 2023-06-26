@@ -19,16 +19,13 @@ public class InvoiceDetailService {
 
     private ProductRepository productRepository;
 
-    public void saveInvoiceDetail (InvoiceDetail invoiceDetail) throws Exception {
+    public void saveInvoiceDetail(InvoiceDetail invoiceDetail) throws Exception {
         invoiceDetailRepository.save(invoiceDetail);
     }
 
-    public List<InvoiceDetailDTO> getInvoiceDetailsByInvoiceId (int invoice_id) throws Exception {
+    public List<InvoiceDetailDTO> getInvoiceDetailsByInvoiceId(int invoice_id) throws Exception {
         return invoiceDetailRepository.getInvoiceDetailsByInvoiceId(invoice_id);
     }
-
-
-
 
 
 }

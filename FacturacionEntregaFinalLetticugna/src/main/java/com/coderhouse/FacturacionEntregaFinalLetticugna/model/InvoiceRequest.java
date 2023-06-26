@@ -6,7 +6,6 @@ public class InvoiceRequest {
 
     private int client_id;
 
-
     private List<RequestProductDetail> product_list;
 
     public InvoiceRequest(int client_id, List<RequestProductDetail> product_list) {
