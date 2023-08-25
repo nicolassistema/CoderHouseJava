@@ -18,4 +18,7 @@ public interface InvoiceDetailRepository extends JpaRepository<InvoiceDetail, In
             ") FROM Invoice i JOIN i.invoiceDetails d JOIN d.product p WHERE i.id = :invoice_id")
     List<InvoiceDetailDTO> getInvoiceDetailsByInvoiceId(@Param("invoice_id") int invoice_id);
 
+
+
+
 }

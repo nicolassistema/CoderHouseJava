@@ -1,6 +1,8 @@
 package com.coderhouse.FacturacionEntregaFinalLetticugna;
 
 
+import com.coderhouse.FacturacionEntregaFinalLetticugna.model.Client;
+import com.coderhouse.FacturacionEntregaFinalLetticugna.model.Product;
 import com.coderhouse.FacturacionEntregaFinalLetticugna.repository.ClientRepository;
 import com.coderhouse.FacturacionEntregaFinalLetticugna.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +27,7 @@ public class FacturacionEntregaFinalLetticugnaApplication implements CommandLine
     public void run(String... args) throws Exception {
 
         System.out.println("Server listening. Access H2 on: http://localhost:8888/h2-console");
+
 
 
     }
