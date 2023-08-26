@@ -45,7 +45,7 @@ public class ClientService {
             return cliente.get();
         }
     }
-
+/**/
     public String updateClientById(Client client, int id) throws Exception {
         Optional<Client> clientExist = clientRepository.findById(id);//obtengo el cliente por id
 
